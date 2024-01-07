@@ -29,6 +29,39 @@ class ClassName
     ClassName : +method(arg1, arg2) return
 ```
 
+### Generic Types
+"Generic Types" such as `List<T>` can be represented by enclosing the type in `~` in fields, parameters, and return types.
+```
+classDiagram
+class MyList~T~ {
+    List~T~ data
+    +add~T~(T number)
+    +Double(T) MyList~T~
+}
+```
+```mermaid
+classDiagram
+class MyList~T~ {
+    List~T~ data
+    +add~T~(T number)
+    +Double(T) MyList~T~
+}
+```
+
+### Visibility
+To describe the visilibity of a class member, use optional notation before the member name.
++ `+` public
++ `-` private
++ `#` protected
++ `~` package/internal
+
+### Modifiers
+To include modifiers/classifiers, use optional notation "after" the `()` or return type.
++ `*` Abstract
+  + e.g.: `someAbstractMethod()*` or `someAbstractMethod() : void*`
++ `$` Static
+  + (method) e.g.: `someStaticMethod()$` or `someStaticMethod() : void$`
+  + (field) e.g.: `Type someStaticField$`
 
 ## Inheritance
 When 'Vehicle' class inherits from 'Car' class, it is represented as follows:
