@@ -64,11 +64,32 @@ To include modifiers/classifiers, use optional notation "after" the `()` or retu
   + (field) e.g.: `Type someStaticField$`
 
 ## Inheritance
-When 'Vehicle' class inherits from 'Car' class, it is represented as follows:
+When 'Car' class inherits from 'Vehicle' class, it is represented as follows:
 ```mermaid
 classDiagram
-    Vehicle <|-- Car
+    Vehicle <|-- Car : Labels
 ```
+
+### Relationships
+Currently, Mermaid supports eight types of relations defined under UML.
++ `<|--` Inheritance
++ `*--` Composition
++ `o--` Aggregation (has-a)
++ `-->` Association
++ `--` Link(Solid)
++ `..>` Dependency
++ `..|>` Realization
++ `..` Link(Dashed)
+
+### Cardinality/Multiplicity
+Cardinality/Multiplicity can be represented by placing the optional text within `""` before or after a given arrow.
+```mermaid
+classDiagram
+    Customer "1" --> "*" Ticket
+    Vehicle "1" *-- "1..*" Wheel
+    Galaxy --> "many" Star
+```
+
 
 ## About
 ```mermaid
