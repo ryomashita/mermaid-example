@@ -3,6 +3,14 @@ Refer: https://mermaid.js.org/syntax/classDiagram.html
 
 The class diagram represents the classes and their relationships with UML notations.
 
+## Comments
+Comments using `%%` on their own line can be inserted within a class diagram, which will be ignored by the parser.
+```
+classDiagram
+    %% This is a comment, not visible in the diagram.
+    class ClassA
+```
+
 ## Class Members
 UML provides how to represetn class members such as **attributes** and **methods**.
 Mermaid distinguishes between attributes and functions/methods based on whether `()` are present or not.
@@ -90,6 +98,53 @@ classDiagram
     Galaxy --> "many" Star
 ```
 
+## Annotations of Class
+It is possible to annotate classes with `<<text>>`.
+Some common annotations are:
++ `<<Interface>>`
++ `<<Abstract>>`
++ `<<Service>>`
++ `<<Enumeration>>`
+```
+classDiagram
+    class IClassA
+    <<Interface>> IClassA
+```
+```
+classDiagram
+    class IClassA {
+        <<Interface>>
+    }
+```
+```mermaid
+classDiagram
+    class IClassA {
+        <<Interface>>
+    }
+```
+
+
+
+
+### Namespace
+```
+classDiagram
+namespace BaseName {
+    class ClassA
+    class ClassB {
+        double field
+    }
+}
+```
+```mermaid
+classDiagram
+namespace BaseName {
+    class ClassA
+    class ClassB {
+        double field
+    }
+}
+```
 
 ## About
 ```mermaid
