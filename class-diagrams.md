@@ -3,13 +3,6 @@ Refer: https://mermaid.js.org/syntax/classDiagram.html
 
 The class diagram represents the classes and their relationships with UML notations.
 
-## Comments
-Comments using `%%` on their own line can be inserted within a class diagram, which will be ignored by the parser.
-```
-classDiagram
-    %% This is a comment, not visible in the diagram.
-    class ClassA
-```
 
 ## Class Members
 UML provides how to represetn class members such as **attributes** and **methods**.
@@ -98,7 +91,61 @@ classDiagram
     Galaxy --> "many" Star
 ```
 
-## Annotations of Class
+### Direction of Arrows
+The direction of class relationships can be changed by using the direction statement.
++ `direction RL` Right to Left
++ `direction LR` Left to Right
++ `direction TB` Top to Bottom
++ `direction BT` Bottom to Top
+
+```
+classDiagram
+    direction RL
+    %% direction TB
+    class Student {
+        -idCard : IdCard
+    }
+    class IdCard{
+        -id : int
+        -name : string
+    }
+    Student "1" --o "1" IdCard : carries
+```
+```mermaid
+classDiagram
+    direction RL
+    class Student {
+        -idCard : IdCard
+    }
+    class IdCard{
+        -id : int
+        -name : string
+    }
+    Student "1" --o "1" IdCard : carries
+```
+
+## Miscellaneous
+### Namespace
+```
+classDiagram
+namespace BaseName {
+    class ClassA
+    class ClassB {
+        double field
+    }
+}
+```
+```mermaid
+classDiagram
+namespace BaseName {
+    class ClassA
+    class ClassB {
+        double field
+    }
+}
+```
+
+### Annotations of Class
 It is possible to annotate classes with `<<text>>`.
 Some common annotations are:
 + `<<Interface>>`
@@ -123,30 +170,112 @@ classDiagram
     }
 ```
 
-
-
-
-### Namespace
+### Comments
+Comments using `%%` on their own line can be inserted within a class diagram, which will be ignored by the parser.
 ```
 classDiagram
-namespace BaseName {
+    %% This is a comment, not visible in the diagram.
     class ClassA
-    class ClassB {
-        double field
+```
+
+### Notes
+A note can be added on the diagram or for a specific class.
+```
+classDiagram
+    note "This is a general note"
+    note for MyClass "This is a note for MyClass"
+    class MyClass{
     }
-}
 ```
 ```mermaid
 classDiagram
-namespace BaseName {
-    class ClassA
-    class ClassB {
-        double field
+    note "This is a general note"
+    note for MyClass "This is a note for MyClass"
+    class MyClass{
     }
-}
 ```
 
-## About
+
+## Interaction
+It is possible to bind a click event to a node.
+A click event can be defined with JavaScript function or a URL.
+
+### URL Link
+```
+classDiagram
+    class GitHubLink
+    link GitHubLink "https://www.github.com" "This is a tooltip for the link"
+    class GitHubLink2
+    click GitHubLink2 href "https://www.github.com" "This is a tooltip for the link"
+```
+```mermaid
+classDiagram
+    class GitHubLink
+    link GitHubLink "https://www.github.com" "This is a tooltip for the link"
+    class GitHubLink2
+    click GitHubLink2 href "https://www.github.com" "This is a tooltip for the link"
+```
+
+### JavaScript Callback (in HTML page)
+Note: The callback functionality is disabled when using `securityLevel: 'strict'` and enable when using `securityLevel: 'loose'` in the configuration.
+```html
+<body>
+  <pre class="mermaid">
+    classDiagram
+    Animal <|-- Duck
+    Animal <|-- Zebra
+    class Duck{
+      +String beakColor
+      +swim()
+      +quack()
+      }
+    class Zebra{
+      +bool is_wild
+      +run()
+      }
+      callback Duck callback "Tooltip"
+      link Zebra "https://www.github.com" "This is a link"
+  </pre>
+
+  <script>
+    const callback = function () {
+      alert('A callback was triggered');
+    };
+    const config = {
+      startOnLoad: true,
+      securityLevel: 'loose',
+    };
+    mermaid.initialize(config);
+  </script>
+</body>
+```
+
+## Styling
+You can apply styles such as a thicker border or a background color to individual nodes with css.
+```
+classDiagram
+    class Animal:::styleClass{
+    }
+    %% or cssClass "Animal" styleClass
+```
+```html
+<style>
+  .styleClass > rect {
+    fill: #ff0000;
+    stroke: #ffff00;
+    stroke-width: 4px;
+  }
+</style>
+```
+
+### Default Styles
+The default styles are defined at `src/themes/class.sccs`.
+e.g.:
++ `g.classGroupt text` Styles for general class text.
++ `classGroup .title` Styles for general class title.
+...
+
+## Samples
 ```mermaid
 classDiagram
 note "From Duck till Zebra"
