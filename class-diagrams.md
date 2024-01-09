@@ -277,6 +277,8 @@ e.g.:
 ...
 
 ## Samples
+*from https://mermaid.js.org/syntax/classDiagram.html#class-diagrams*
+
 ```mermaid
 classDiagram
 note "From Duck till Zebra"
