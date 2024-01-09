@@ -126,6 +126,7 @@ classDiagram
 
 ## Miscellaneous
 ### Namespace
+*Unable to display in GitHub (on 2024.1.9)*
 ```
 classDiagram
 namespace BaseName {
