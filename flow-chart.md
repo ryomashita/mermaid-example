@@ -39,3 +39,38 @@ flowchart LR
 ```
 
 ## Node Styles
+### Node shapes
+```
+flowchart RL
+    re(round edges)
+    ss([stadium-shaped])
+    sr[[subroutine]]
+    cl[(database cylindrical)]
+    cir((circle))
+    cir2(((circle)))
+    asym>asymmetric]
+    rho{rhombus}
+    hex{{hexagon}}
+    para[/parallelogram/]
+    para2[\parallelogram\]
+    trape[/trapezoid\]
+    trape2[\trapezoid/]
+```
+```mermaid
+flowchart RL
+    re(round edges)
+    ss([stadium-shaped])
+    sr[[subroutine]]
+    cl[(database cylindrical)]
+    cir((circle))
+    cir2(((circle)))
+    asym>asymmetric]
+    rho{rhombus}
+    hex{{hexagon}}
+    para[/parallelogram/]
+    para2[\parallelogram\]
+    trape[/trapezoid\]
+    trape2[\trapezoid/]
+```
+
+## Link Styles
