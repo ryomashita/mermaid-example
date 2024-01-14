@@ -7,13 +7,15 @@ The Mermaid defines how nodes and edges are connected with different arrow types
 WARNING: If you are typing the word "end" in a Flowchart node, it will break the Flowchart.
 To avoid this, you can capitilize the entire word of any of the letters (e.g., "End" or "END").
 
-## Nodes (default style)
+## Nodes 
+### default style
+In order to render special characters, put text within quotes.
 ```
 flowchart LR
 %% can use "graph" instead of "flowchart".
     nodeA
     nodeB[Message of nodeB]
-    nodeC["To use unicode❤ with quatation "]
+    nodeC["To use unicode❤#9829; with quate#quot; "]
     nodeM["`To **use** _Markdown_, 
         with backtick`"]
 ```
@@ -22,10 +24,13 @@ flowchart LR
 %% use "graph" instead of "flowchart".
     nodeA
     nodeB[Message of nodeB]
-    nodeC["use unicode❤ with quatation"]
+    nodeC["To use unicode❤#9829; with quate#quot; "]
     nodeM["`To **use** _Markdown_, 
         with backtick`"]
 ```
+
+### Markdown Strings
+
 
 ## Edges
 ### Direction
@@ -71,6 +76,76 @@ flowchart LR
     a1-->b2 & b3-->c1
     x1 & x2-->y1 & y2
 ```
+
+## Subgraphs
+```
+flowchart TB
+    subgraph sub1[sub1]
+        a1-->a2
+    end
+    subgraph sub2[sub2]
+        b1
+    end
+    x2-->a2
+    subgraph sub3
+        c1---c2
+    end
+    c1-->a2
+    sub1-->sub2
+    sub2-->a2
+```
+```mermaid
+flowchart TB
+    subgraph sub1[sub1]
+        a1-->a2
+    end
+    subgraph sub2[sub2]
+        b1
+    end
+    x2-->a2
+    subgraph sub3
+        c1---c2
+    end
+    c1-->a2
+    sub1-->sub2
+    sub2-->a2
+```
+
+### Direction in subgraphs
+WARN: If any of a subgraph's nodes are linked to the outside, subgraph direction will be ignored. The subgraph will inherit the direction of the parent graph by default.
+```
+flowchart LR
+  subgraph TOP["TOP is LR"]
+    direction LR
+    subgraph B1["B1 is RL"]
+        direction RL
+        i1 -->f1
+    end
+    subgraph B2[B2 is BT]
+        direction BT
+        i2 -->f2
+    end
+    B1 --> B2
+  end
+  A --> TOP --> B
+```
+```mermaid
+flowchart LR
+  subgraph TOP["TOP is LR"]
+    direction LR
+    subgraph B1["B1 is RL"]
+        direction RL
+        i1 -->f1
+    end
+    subgraph B2[B2 is BT]
+        direction BT
+        i2 -->f2
+    end
+    B1 --> B2
+  end
+  A --> TOP --> B
+```
+
 
 ## Node Styles
 ### Node shapes
