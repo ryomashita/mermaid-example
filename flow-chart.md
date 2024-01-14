@@ -117,6 +117,8 @@ flowchart LR
     C-.->|dot & head|D
     C==>|thick|D
     C~~~|invisible|D
+    E--oF
+    E--xF
 ```
 ```mermaid
 flowchart LR
@@ -126,4 +128,49 @@ flowchart LR
     C-.->|dot & head|D
     C==>|thick|D
     C~~~|invisible|D
+    E--oF
+    E--xF
 ```
+
+### Multi directional arrows
+```
+flowchart LR
+    A<-->|arrow head|B
+    C<-.->|dot & head|D
+    C<==>|thick|D
+    E o--oF
+    E x--xF
+```
+```mermaid
+flowchart LR
+    A<-->|arrow head|B
+    C<-.->|dot & head|D
+    C<==>|thick|D
+    E o--oF
+    E x--xF
+```
+
+### Lengeh of links
+You can make any link longer by adding more dashes in the link.
+
+NOTE: The acutla length of the link is determined by the rendering engine automatically.
+```
+flowchart LR
+    S -->A -->|d:2|B --> C
+    S -->dash:2
+    S ---> dash:3
+    S ----> dash:4
+    S -...-> dot:3
+    S -----> dash:5
+```
+```mermaid
+flowchart LR
+    S -->A -->|d:2|B --> C
+    S -->dash:2
+    S ---> dash:3
+    S ----> dash:4
+    S -...-> dot:3
+    S -----> dash:5
+```
+
+## Special Characters
