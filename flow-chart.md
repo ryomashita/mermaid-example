@@ -30,6 +30,26 @@ flowchart LR
 ```
 
 ### Markdown Strings
+The markdown format is supported in text with `"``"`.
+
+In markdown strings, you can start new lines with  newline character instead of a `<br>` tag.
+
+```
+flowchart LR
+subgraph "`**Sub Bold**`"
+  a("`The **bold** 
+  in *italic* hat`") -- "`**edge** label`" --> 
+  b{{"`The **dog** in the hog`"}}
+end
+```
+```mermaid
+flowchart LR
+subgraph "`**Sub Bold**`"
+  a("`The **bold** 
+  in *italic* hat`") -- "`**edge** label`" --> 
+  b{{"`The **dog** in the hog`"}}
+end
+```
 
 
 ## Edges
