@@ -1,87 +1,101 @@
 # Flowchart
+
 Reference: https://mermaid.js.org/syntax/flowchart.html
 
-Flowcharts are composed of nodes and edges. 
+Flowcharts are composed of nodes and edges.
 The Mermaid defines how nodes and edges are connected with different arrow types, and any linking to and from subgraphs.
 
 WARNING: If you are typing the word "end" in a Flowchart node, it will break the Flowchart.
 To avoid this, you can capitilize the entire word of any of the letters (e.g., "End" or "END").
 
-## Nodes 
+## Nodes
+
 ### default style
+
 In order to render special characters, put text within quotes.
+
 ```
 flowchart LR
 %% can use "graph" instead of "flowchart".
     nodeA
     nodeB[Message of nodeB]
     nodeC["To use unicode❤#9829; with quate#quot; "]
-    nodeM["`To **use** _Markdown_, 
+    nodeM["`To **use** _Markdown_,
         with backtick`"]
 ```
+
 ```mermaid
 flowchart LR
 %% use "graph" instead of "flowchart".
     nodeA
     nodeB[Message of nodeB]
     nodeC["To use unicode❤#9829; with quate#quot; "]
-    nodeM["`To **use** _Markdown_, 
+    nodeM["`To **use** _Markdown_,
         with backtick`"]
 ```
 
 ### Markdown Strings
-The markdown format is supported in text with `"``"`.
 
-In markdown strings, you can start new lines with  newline character instead of a `<br>` tag.
+The markdown format is supported in text with ` "``" `.
+
+In markdown strings, you can start new lines with newline character instead of a `<br>` tag.
 
 ```
 flowchart LR
 subgraph "`**Sub Bold**`"
-  a("`The **bold** 
-  in *italic* hat`") -- "`**edge** label`" --> 
+  a("`The **bold**
+  in *italic* hat`") -- "`**edge** label`" -->
   b{{"`The **dog** in the hog`"}}
 end
 ```
+
 ```mermaid
 flowchart LR
 subgraph "`**Sub Bold**`"
-  a("`The **bold** 
-  in *italic* hat`") -- "`**edge** label`" --> 
+  a("`The **bold**
+  in *italic* hat`") -- "`**edge** label`" -->
   b{{"`The **dog** in the hog`"}}
 end
 ```
 
-
 ## Edges
+
 ### Direction
+
 ```
 flowchart LR
     %% use LR, RL, TB, BT
 ```
+
 ```mermaid
 flowchart RL
     start --> stop
 ```
+
 ```mermaid
 flowchart LR
     start --> stop
 ```
+
 ```mermaid
 flowchart TB
     start --> stop
 ```
+
 ```mermaid
 flowchart BT
     start --> stop
 ```
 
 ### Direction with text
+
 ```
 flowchart LR
     A-- This is the text -->B
     A-. This is the text -.-B
     A---|This is the text|B
 ```
+
 ```mermaid
 flowchart LR
     A-- This is the text -->B
@@ -90,6 +104,7 @@ flowchart LR
 ```
 
 ### Chaining of links
+
 ```mermaid
 flowchart LR
     d1-->d2-->d3
@@ -98,6 +113,7 @@ flowchart LR
 ```
 
 ## Subgraphs
+
 ```
 flowchart TB
     subgraph sub1[sub1]
@@ -114,6 +130,7 @@ flowchart TB
     sub1-->sub2
     sub2-->a2
 ```
+
 ```mermaid
 flowchart TB
     subgraph sub1[sub1]
@@ -132,7 +149,9 @@ flowchart TB
 ```
 
 ### Direction in subgraphs
+
 WARN: If any of a subgraph's nodes are linked to the outside, subgraph direction will be ignored. The subgraph will inherit the direction of the parent graph by default.
+
 ```
 flowchart LR
   subgraph TOP["TOP is LR"]
@@ -149,6 +168,7 @@ flowchart LR
   end
   A --> TOP --> B
 ```
+
 ```mermaid
 flowchart LR
   subgraph TOP["TOP is LR"]
@@ -166,9 +186,14 @@ flowchart LR
   A --> TOP --> B
 ```
 
+## Comments
+
+Comments must be started with `%%` and can be placed anywhere in the diagram.
 
 ## Node Styles
+
 ### Node shapes
+
 ```
 flowchart RL
     re(round edges)
@@ -185,6 +210,7 @@ flowchart RL
     trape[/trapezoid\]
     trape2[\trapezoid/]
 ```
+
 ```mermaid
 flowchart RL
     re(round edges)
@@ -203,7 +229,9 @@ flowchart RL
 ```
 
 ## Link Styles
+
 ### Link types
+
 ```
 flowchart LR
     A-->|arrow head|B
@@ -215,6 +243,7 @@ flowchart LR
     E--oF
     E--xF
 ```
+
 ```mermaid
 flowchart LR
     A-->|arrow head|B
@@ -228,6 +257,7 @@ flowchart LR
 ```
 
 ### Multi directional arrows
+
 ```
 flowchart LR
     A<-->|arrow head|B
@@ -236,6 +266,7 @@ flowchart LR
     E o--oF
     E x--xF
 ```
+
 ```mermaid
 flowchart LR
     A<-->|arrow head|B
@@ -246,9 +277,11 @@ flowchart LR
 ```
 
 ### Lengeh of links
+
 You can make any link longer by adding more dashes in the link.
 
 NOTE: The acutla length of the link is determined by the rendering engine automatically.
+
 ```
 flowchart LR
     S -->A -->|d:2|B --> C
@@ -258,6 +291,7 @@ flowchart LR
     S -...-> dot:3
     S -----> dash:5
 ```
+
 ```mermaid
 flowchart LR
     S -->A -->|d:2|B --> C
@@ -268,4 +302,34 @@ flowchart LR
     S -----> dash:5
 ```
 
-## Special Characters
+## Interaction
+
+It is possible to bind a click event to a node.
+Click events can be used to trigger javascript callbacks or to open URLs.
+
+```html
+<body>
+  <pre class="mermaid">
+    flowchart LR
+        A-->B
+        B-->C
+        C-->D
+        click A callback "Tooltip"
+        click B "https://www.github.com" "This is a link"
+        click C call callback() "Tooltip"
+        click D href "https://www.github.com" "This is a link"
+  </pre>
+
+  <script>
+    const callback = function () {
+      alert("A callback was triggered");
+    };
+    const config = {
+      startOnLoad: true,
+      flowchart: { useMaxWidth: true, htmlLabels: true, curve: "cardinal" },
+      securityLevel: "loose",
+    };
+    mermaid.initialize(config);
+  </script>
+</body>
+```
