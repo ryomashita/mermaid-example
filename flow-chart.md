@@ -228,6 +228,60 @@ flowchart RL
     trape2[\trapezoid/]
 ```
 
+### Styling a node
+```
+flowchart LR
+    id1(Start)-->id2(Stop)
+    style id1 fill:#f9f,stroke:#333,stroke-width:4px
+    style id2 fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+```
+```mermaid
+flowchart LR
+    id1(Start)-->id2(Stop)
+    style id1 fill:#f9f,stroke:#333,stroke-width:4px
+    style id2 fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+```
+
+```
+flowchart LR
+    A:::foo & B:::bar --> C:::foobar
+    %% define style classes
+    classDef foo fill:#f96
+    classDef bar stroke:#0f0
+    classDef foobar stroke:#00f
+```
+```mermaid
+flowchart LR
+    A:::foo1 & B:::bar --> C:::foobar
+    classDef foo1 fill:#f96
+    classDef bar stroke:#0f0
+    classDef foobar stroke:#00f
+```
+
+### CSS classes
+
+It is also possible to predefine classes in CSS styles that can be applied from the graph definition.
+
+```html
+<style>
+  .cssClass > rect {
+    fill: #ff0000;
+    stroke: #ffff00;
+    stroke-width: 4px;
+  }
+</style>
+```
+```mermaid
+flowchart LR
+    A-->B[AAA<span>BBB</span>]
+    B-->D
+    class A cssClass
+```
+
+### Basic support for fontawesome
+
+
+
 ## Link Styles
 
 ### Link types
@@ -301,6 +355,30 @@ flowchart LR
     S -...-> dot:3
     S -----> dash:5
 ```
+
+### Styling links
+
+https://mermaid.js.org/syntax/flowchart.html#styling-links
+As links have no ids in the same way as nodes, some other way of deciding what style the links should be attached to is required. 
+Instead of ids, the order number of when the link was defined in the graph is used, or use default to apply to all links. 
+In the example below the style defined in the linkStyle statement will belong to the fourth link in the graph:
+
+```html
+linkStyle 1,2,7 stroke:#ff3,stroke-width:4px,color:red;
+```
+
+### Styling line curves
+
+It is possible to style the type of curve used for lines between items.
+Available curve styles include basis, bumpX, bumpY, cardinal, catmullRom, linear, monotoneX, monotoneY, natural, step, stepAfter, and stepBefore.
+
+```html
+%%{ init: { 'flowchart': { 'curve': 'stepBefore' } } }%%
+graph LR
+```
+
+For a full list of available curves, including an explanation of custom curves, refer to the [Shapes](https://github.com/d3/d3-shape/blob/main/README.md#curves) documentation in the [d3-shape](https://github.com/d3/d3-shape/) project.
+
 
 ## Interaction
 
