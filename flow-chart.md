@@ -229,12 +229,14 @@ flowchart RL
 ```
 
 ### Styling a node
+
 ```
 flowchart LR
     id1(Start)-->id2(Stop)
     style id1 fill:#f9f,stroke:#333,stroke-width:4px
     style id2 fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
 ```
+
 ```mermaid
 flowchart LR
     id1(Start)-->id2(Stop)
@@ -250,6 +252,7 @@ flowchart LR
     classDef bar stroke:#0f0
     classDef foobar stroke:#00f
 ```
+
 ```mermaid
 flowchart LR
     A:::foo1 & B:::bar --> C:::foobar
@@ -271,6 +274,7 @@ It is also possible to predefine classes in CSS styles that can be applied from 
   }
 </style>
 ```
+
 ```mermaid
 flowchart LR
     A-->B[AAA<span>BBB</span>]
@@ -280,6 +284,23 @@ flowchart LR
 
 ### Basic support for fontawesome
 
+[Font Awesome](https://fontawesome.com/) is a popular icon set. 
+Mermaid does not have any restriction on the version of Font Awesome that can be used.
+Please refer the [Official Font Awesome Documentation](https://fontawesome.com/start) on how to include it.
+
+```html
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  rel="stylesheet"
+/>
+```
+```
+flowchart TD
+    B["fa:fa-twitter for peace"]
+    B-->C[fa:fa-ban forbidden]
+    B-->D(fa:fa-spinner)
+    B-->E(A fa:fa-camera-retro perhaps?)
+```
 
 
 ## Link Styles
@@ -359,8 +380,8 @@ flowchart LR
 ### Styling links
 
 https://mermaid.js.org/syntax/flowchart.html#styling-links
-As links have no ids in the same way as nodes, some other way of deciding what style the links should be attached to is required. 
-Instead of ids, the order number of when the link was defined in the graph is used, or use default to apply to all links. 
+As links have no ids in the same way as nodes, some other way of deciding what style the links should be attached to is required.
+Instead of ids, the order number of when the link was defined in the graph is used, or use default to apply to all links.
 In the example below the style defined in the linkStyle statement will belong to the fourth link in the graph:
 
 ```html
@@ -373,12 +394,10 @@ It is possible to style the type of curve used for lines between items.
 Available curve styles include basis, bumpX, bumpY, cardinal, catmullRom, linear, monotoneX, monotoneY, natural, step, stepAfter, and stepBefore.
 
 ```html
-%%{ init: { 'flowchart': { 'curve': 'stepBefore' } } }%%
-graph LR
+%%{ init: { 'flowchart': { 'curve': 'stepBefore' } } }%% graph LR
 ```
 
 For a full list of available curves, including an explanation of custom curves, refer to the [Shapes](https://github.com/d3/d3-shape/blob/main/README.md#curves) documentation in the [d3-shape](https://github.com/d3/d3-shape/) project.
-
 
 ## Interaction
 
@@ -410,4 +429,29 @@ Click events can be used to trigger javascript callbacks or to open URLs.
     mermaid.initialize(config);
   </script>
 </body>
+```
+
+## Configuration
+
+### Renderer
+
+The default renderer of Mermaid is [darge](https://github.com/dagrejs/dagre).
+In Mermaid version 9.4 later, you can use *elk* as an alternate renderer.
+The *elk* renderer is more suitable for rendering larger and/or more complex diagrams. 
+(The *elk* renderer is an experimental feature.)
+
+```html
+%%{init: {"flowchart": {"defaultRenderer": "elk"}} }%%
+```
+
+### Width
+
+In order to change the width of the rendered flowchart, define `mermaid.flowchartConfig` in the configuration.
+`mermaid.flowchartConfig` can be set to a JSON string with config parmeters or the corresponding object.
+How to use the CLI is described in the mermaidCLI page.
+
+```js
+mermaid.flowchartConfig = {
+    width: 100%
+}
 ```
