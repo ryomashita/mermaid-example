@@ -105,6 +105,13 @@ flowchart LR
 
 ### Chaining of links
 
+```
+flowchart LR
+    d1-->d2-->d3
+    a1-->b2 & b3-->c1
+    x1 & x2-->y1 & y2
+```
+
 ```mermaid
 flowchart LR
     d1-->d2-->d3
@@ -213,19 +220,19 @@ flowchart RL
 
 ```mermaid
 flowchart RL
-    re(round edges)
-    ss([stadium-shaped])
-    sr[[subroutine]]
-    cl[(database cylindrical)]
-    cir((circle))
-    cir2(((circle)))
-    asym>asymmetric]
-    rho{rhombus}
-    hex{{hexagon}}
-    para[/parallelogram/]
-    para2[\parallelogram\]
-    trape[/trapezoid\]
-    trape2[\trapezoid/]
+    re("(round edges)")
+    ss(["([stadium-shaped])"])
+    sr[["[[subroutine]]"]]
+    cl[("[(database cylindrical)]")]
+    cir(("((circle))"))
+    cir2((("(((circle)))")))
+    asym>">asymmetric]"]
+    rho{"{rhombus}"}
+    hex{{"{{hexagon}}"}}
+    para[/"[/parallelogram/]"/]
+    para2[\"[\parallelogram\]"\]
+    trape[/"[/trapezoid\]"\]
+    trape2[\"[\trapezoid/]"/]
 ```
 
 ### Styling a node
@@ -284,7 +291,7 @@ flowchart LR
 
 ### Basic support for fontawesome
 
-[Font Awesome](https://fontawesome.com/) is a popular icon set. 
+[Font Awesome](https://fontawesome.com/) is a popular icon set.
 Mermaid does not have any restriction on the version of Font Awesome that can be used.
 Please refer the [Official Font Awesome Documentation](https://fontawesome.com/start) on how to include it.
 
@@ -294,6 +301,7 @@ Please refer the [Official Font Awesome Documentation](https://fontawesome.com/s
   rel="stylesheet"
 />
 ```
+
 ```
 flowchart TD
     B["fa:fa-twitter for peace"]
@@ -301,7 +309,6 @@ flowchart TD
     B-->D(fa:fa-spinner)
     B-->E(A fa:fa-camera-retro perhaps?)
 ```
-
 
 ## Link Styles
 
@@ -312,7 +319,7 @@ flowchart LR
     A-->|arrow head|B
     A---|open|B
     A-.-|dot|B
-    C-.->|dot & head|D
+    C-.->|dot #amp; head|D
     C==>|thick|D
     C~~~|invisible|D
     E--oF
@@ -324,7 +331,7 @@ flowchart LR
     A-->|arrow head|B
     A---|open|B
     A-.-|dot|B
-    C-.->|dot & head|D
+    C-.->|dot #amp; head|D
     C==>|thick|D
     C~~~|invisible|D
     E--oF
@@ -436,9 +443,9 @@ Click events can be used to trigger javascript callbacks or to open URLs.
 ### Renderer
 
 The default renderer of Mermaid is [darge](https://github.com/dagrejs/dagre).
-In Mermaid version 9.4 later, you can use *elk* as an alternate renderer.
-The *elk* renderer is more suitable for rendering larger and/or more complex diagrams. 
-(The *elk* renderer is an experimental feature.)
+In Mermaid version 9.4 later, you can use _elk_ as an alternate renderer.
+The _elk_ renderer is more suitable for rendering larger and/or more complex diagrams.
+(The _elk_ renderer is an experimental feature.)
 
 ```html
 %%{init: {"flowchart": {"defaultRenderer": "elk"}} }%%
